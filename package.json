@@ -1,0 +1,33 @@
+{
+  "name": "test2",
+  "version": "1.0.0",
+  "main": "main.js",
+"scripts": {
+  "start": "node server/server.js",
+  "client": "npm start --prefix client",
+  "electron": "electron .",
+  "package-mac": "electron-packager . test2 --platform=darwin --arch=x64 --out=dist --overwrite",
+  "package-win": "electron-packager . test2 --platform=win32 --arch=x64 --out=dist --overwrite",
+  "package-mac-arm": "electron-packager . test2 --platform=darwin --arch=arm64 --out=dist --overwrite",
+  "build": "electron-builder"
+},
+"build": {
+  "appId": "com.example.ordersystem",
+  "productName": "OrderSystemApp",
+  "files": [
+    "**/*",
+    "!dist"
+  ],
+  "directories": {
+    "output": "dist"
+  },
+  "win": {
+    "target": "nsis"
+  }
+},
+  "devDependencies": {
+    "electron": "^37.3.1",
+    "electron-builder": "^26.0.12",
+    "electron-packager": "^17.1.2"
+  }
+}
