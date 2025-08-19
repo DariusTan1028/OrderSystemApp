@@ -1,33 +1,26 @@
-- name: Configure Git
-  run: |
-    git config --global url."https://github.com/".insteadOf git@github.com:
+name: Build Electron App
 
-  on:
-    push:
-      branches:
-        - main
+on:
+  push:
+    branches: [ main ]
 
-  jobs:
-    build:
-      runs-on: windows-latest
+jobs:
+  build:
+    runs-on: ubuntu-latest
 
-      steps:
-        - name: Checkout code
-          uses: actions/checkout@v4
+    steps:
+      - uses: actions/checkout@v3
 
-        - name: Set up Node.js
-          uses: actions/setup-node@v4
-          with:
-            node-version: 18
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
 
-        - name: Install dependencies
-          run: npm install
+      - name: Install dependencies
+        run: npm install
 
-        - name: Build with electron-builder
-          run: npm run build
+      - name: Build app
+        run: npm run build
 
-        - name: Upload artifact
-          uses: actions/upload-artifact@v4
-          with:
-            name: windows-installer
-            path: dist/*.exe
+      - name: Package app
+        run: npm run build:win  # or build:mac / build:linux depending on your needs
