@@ -25,7 +25,8 @@
     },
     "win": {
       "target": "nsis"
-    }
+    },
+    "publish": null
   },
   "devDependencies": {
     "electron": "^37.3.1",
