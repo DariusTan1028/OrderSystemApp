@@ -25,10 +25,6 @@ jobs:
       - name: Package app
         run: npm run build  # or build:mac / build:linux depending on your needs
 
-      - name: Upload artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: windows-build
-          path: dist/
+
 
         
